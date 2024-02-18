@@ -10,10 +10,10 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { ContactService } from './contact.service';
-import { JwtAuthGuard } from 'src/auth/guards.ts/jwt.guard';
+import { JwtAuthGuard } from '../auth/guards.ts/jwt.guard';
 import { CreateContactDto } from './dto/create-contact.dto';
-import { UserId } from 'src/decorators/userId.decorator';
-import { IdValidationPipe } from 'src/pipes/ad-validation.pipe';
+import { UserId } from '../decorators/userId.decorator';
+import { IdValidationPipe } from '../pipes/id-validation.pipe';
 import { CONTACT_NOT_FOUND } from './contact.constants';
 import { UpdateContactDto } from './dto/update-contact.dto';
 

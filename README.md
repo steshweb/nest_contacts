@@ -1,4 +1,6 @@
 The project was created on the Nest framework.
+npm istall - install server
+npm start - start server
 
 POST "api/auth/register" - user registration, return user email.
 body {
@@ -35,4 +37,17 @@ body {
 }
 
 DELETE "api/contact/:id" - delete contact by id for user
+Authorization token required
+
+POST "api/file/upload" - upload file for contact, contact can have only one file. return contactId and url.
+Authorization token required
+body {
+  contactId: string, (required)
+  file: file type (jpg, jpeg, png, webp) (required)
+}
+
+GET "api/file/:contactId" - return file data, contactId and url.
+Authorization token required
+
+DELETE "api/file/:contactId" - delete file for contact.
 Authorization token required

@@ -12,7 +12,7 @@ export class Contact extends Document {
   @Prop({ required: true })
   address: string;
 
-  @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'User' })
+  @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true })
   userId: mongoose.Types.ObjectId;
 }
 

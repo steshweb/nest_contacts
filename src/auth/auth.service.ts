@@ -1,12 +1,10 @@
 import { genSalt, hash, compare } from 'bcryptjs';
-import { Injectable, UnauthorizedException } from '@nestjs/common';
+import { Model } from 'mongoose';
+import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { JwtService } from '@nestjs/jwt';
-import { Model } from 'mongoose';
-
 import { User } from './user.model';
 import { AuthDto } from './dto/auth.dto';
-import { USER_NOT_FOUND, WRONG_PASSWORD } from './auth.constants';
 
 @Injectable()
 export class AuthService {
@@ -34,23 +32,18 @@ export class AuthService {
     return this.userModel.findOne({ email }).exec();
   }
 
-  async validateUser(email: string, password: string): Promise<Pick<User, 'email' | '_id'>> {
+  async validateUser(email: string, password: string): Promise<Pick<User, 'email' | '_id'> | null> {
     const user = await this.findUser(email);
-    if (!user) {
-      throw new UnauthorizedException(USER_NOT_FOUND);
-    }
+    if (!user) return null;
 
     const isCorrectPassword = await compare(password, user.password);
-    if (!isCorrectPassword) {
-      throw new UnauthorizedException(WRONG_PASSWORD);
-    }
+    if (!isCorrectPassword) return null;
 
     return { email: user.email, _id: user._id };
   }
 
   async login(email: string, userId: string) {
     const payload = { email, userId };
-    const token = await this.jwtService.signAsync(payload);
-    return { token };
+    return this.jwtService.signAsync(payload);
   }
 }

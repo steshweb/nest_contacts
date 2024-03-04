@@ -8,6 +8,8 @@ import {
   Patch,
   Post,
   UseGuards,
+  UsePipes,
+  ValidationPipe,
 } from '@nestjs/common';
 import { ContactService } from './contact.service';
 import { JwtAuthGuard } from '../auth/guards.ts/jwt.guard';
@@ -21,6 +23,7 @@ import { UpdateContactDto } from './dto/update-contact.dto';
 export class ContactController {
   constructor(private readonly contactService: ContactService) {}
 
+  @UsePipes(new ValidationPipe())
   @UseGuards(JwtAuthGuard)
   @Post('create')
   async create(@UserId() userId: string, @Body() createContactDto: CreateContactDto) {

@@ -5,8 +5,6 @@ import { getMongoConfig } from './configs/mongo.config';
 import { AuthModule } from './auth/auth.module';
 import { ContactModule } from './contact/contact.module';
 import { FileModule } from './file/file.module';
-import { join } from 'path';
-import { ServeStaticModule } from '@nestjs/serve-static';
 
 @Module({
   imports: [
@@ -19,9 +17,6 @@ import { ServeStaticModule } from '@nestjs/serve-static';
     AuthModule,
     ContactModule,
     FileModule,
-    ServeStaticModule.forRoot({
-      rootPath: join(__dirname, '..', 'uploads'),
-    }),
   ],
   controllers: [],
   providers: [],

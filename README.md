@@ -1,6 +1,7 @@
 The project was created on the Nest framework.
 npm istall - install server
 npm start - start server
+npm run test:e2e - run e2e tests; database must contain a user (test3@mail.com 123456) to obtain the token.
 
 POST "api/auth/register" - user registration, return user email.
 body {
@@ -51,3 +52,5 @@ Authorization token required
 
 DELETE "api/file/:contactId" - delete file for contact.
 Authorization token required
+
+to view the file, use the following formats: server_address/upload/file_url

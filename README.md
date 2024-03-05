@@ -54,3 +54,4 @@ DELETE "api/file/:contactId" - delete file for contact.
 Authorization token required
 
 to view the file, use the following formats: server_address/upload/file_url
+https://nest-contacts-latest.onrender.com - hosting address
